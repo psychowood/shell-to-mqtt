@@ -1,6 +1,6 @@
-# CURL to MQTT Home Assistant Publisher
+# Shell to MQTT Home Assistant Publisher
 
-A Docker container that publishes sensor data to Home Assistant via MQTT. It supports automatic discovery and periodic status updates from an HTTP endpoint.
+A Docker container that publishes sensor data to Home Assistant via MQTT. It supports automatic discovery and periodic status updates from a shell command or an HTTP endpoint (via curl).
 
 ## Features
 
@@ -28,9 +28,9 @@ A Docker container that publishes sensor data to Home Assistant via MQTT. It sup
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| DISCOVERY_TOPIC | MQTT topic for HA discovery | homeassistant/sensor/my_device/temperature/config |
-| SHELL_COMMAND | Command to fetch sensor data | curl -s http://api.example.com |
-| STATUS_TOPIC | MQTT topic for status updates | homeassistant/sensor/my_device/temperature/state |
+| DISCOVERY_TOPIC | MQTT topic for HA discovery | homeassistant/sensor/my_device/myip/config |
+| SHELL_COMMAND | Command to fetch sensor data | curl -s http://me.gandi.net |
+| STATUS_TOPIC | MQTT topic for status updates | shell-to-mqtt/sensor/my_device/myip/state |
 | MQTT_HOST | MQTT broker hostname | localhost |
 | MQTT_PORT | MQTT broker port | 1883 |
 | MQTT_USERNAME | MQTT username | user |
@@ -43,7 +43,7 @@ Create a `config/discovery.json` file with your Home Assistant MQTT discovery co
 ```json
 {
   "name": "Temperature Sensor",
-  "state_topic": "homeassistant/sensor/my_device/temperature/state",
+  "state_topic": "shell-to-mqtt/sensor/my_device/myip/state",
   "unique_id": "temp_sensor_1",
   "device": {
     "identifiers": ["my_device"],
@@ -56,11 +56,7 @@ Create a `config/discovery.json` file with your Home Assistant MQTT discovery co
 
 ## Usage
 
-1. Clone this repository:
-```bash
-git clone https://github.com/yourusername/mqtt-ha-publisher.git
-cd mqtt-ha-publisher
-```
+1. Clone this repository
 
 2. Create your discovery configuration:
 ```bash
@@ -86,9 +82,9 @@ To run without Docker Compose:
 ```bash
 docker run -d \
   -v $(pwd)/config:/config \
-  -e DISCOVERY_TOPIC="homeassistant/sensor/my_device/temperature/config" \
+  -e DISCOVERY_TOPIC="homeassistant/sensor/my_device/myip/config" \
   -e SHELL_COMMAND="curl -s http://api.example.com" \
-  -e STATUS_TOPIC="homeassistant/sensor/my_device/temperature/state" \
+  -e STATUS_TOPIC="shell-to-mqtt/sensor/my_device/myip/state" \
   -e MQTT_HOST="localhost" \
   -e MQTT_PORT="1883" \
   -e MQTT_USERNAME="user" \

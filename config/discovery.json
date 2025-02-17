@@ -1,7 +1,7 @@
 {
     "name": "Device IP Address",
     "device_class": "enum",
-    "state_topic": "shell-to-mqtt/sensor/my_device/network/state",
+    "state_topic": "shell-to-mqtt/sensor/my_device/myip/state",
     "unique_id": "my_device_ip",
     "icon": "mdi:ip-network",
     "device": {
