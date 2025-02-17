@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mqtt-publisher:
+    build: .
+    volumes:
+      - ./config:/config
+    environment:
+      - DISCOVERY_TOPIC=homeassistant/sensor/my_device/myip/config
+      - SHELL_COMMAND=curl -s http://me.gandi.net
+      - STATUS_TOPIC=shell-to-mqtt/sensor/my_device/myip/state
+      - MQTT_HOST=localhost
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=user
+      - MQTT_PASSWORD=pass
+    restart: unless-stopped

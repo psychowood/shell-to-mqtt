@@ -1,0 +1,17 @@
+{
+    "name": "Device IP Address",
+    "device_class": "enum",
+    "state_topic": "shell-to-mqtt/sensor/my_device/network/state",
+    "unique_id": "my_device_ip",
+    "icon": "mdi:ip-network",
+    "device": {
+      "identifiers": ["my_device_network"],
+      "name": "My Network Device",
+      "model": "IP Monitor",
+      "manufacturer": "Home Lab",
+      "sw_version": "1.0.0"
+    },
+    "expire_after": 120,
+    "enabled_by_default": true
+  }
+  
