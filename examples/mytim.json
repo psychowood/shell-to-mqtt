@@ -1,0 +1,66 @@
+{
+    "dev": {
+      "ids": "tim_home_connect",
+      "name": "TIM Home Connect",
+      "mf": "TIM",
+      "mdl": "Home Connect",
+      "sw": "1.0",
+      "sn": "tim_home_connect",
+      "hw": "1.0rev1"
+    },
+    "o": {
+      "name": "tim_home_connect_mqtt",
+      "sw": "1.0",
+      "url": "https://github.com/psychowood/shell-to-mqtt"
+    },
+    "cmps": {
+      "tim_home_connect_data_usage": {
+        "p": "sensor",
+        "device_class": "data_rate",
+        "unit_of_measurement": "MB",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'DATI') | map(attribute='value') | first | default('0') }}",
+        "unique_id": "tim_home_connect_data_usage",
+        "name": "Data available"
+      },
+      "tim_home_connect_data_usage_total": {
+        "p": "sensor",
+        "device_class": "data_rate",
+        "unit_of_measurement": "MB",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'DATI') | map(attribute='total') | first | default('0') }}",
+        "unique_id": "tim_home_connect_data_usage_total",
+        "name": "Data total"
+      },
+      "tim_home_connect_sms_count": {
+        "p": "sensor",
+        "unit_of_measurement": "SMS",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'SMS') | map(attribute='value') | first | default('0') }}",
+        "unique_id": "tim_home_connect_sms_count",
+        "name": "SMS available"
+      },
+      "tim_home_connect_sms_count_total": {
+        "p": "sensor",
+        "unit_of_measurement": "SMS",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'SMS') | map(attribute='total') | first | default('0') }}",
+        "unique_id": "tim_home_connect_sms_count_total",
+        "name": "SMS total"
+      },
+      "tim_home_connect_voce_minutes": {
+        "p": "sensor",
+        "device_class": "duration",
+        "unit_of_measurement": "min",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'VOCE') | map(attribute='value') | first | default('0') }}",
+        "unique_id": "tim_home_connect_voce_minutes",
+        "name": "Voice minutes available"
+      },
+      "tim_home_connect_voce_minutes_total": {
+        "p": "sensor",
+        "device_class": "duration",
+        "unit_of_measurement": "min",
+        "value_template": "{{ value_json.aggregateoffers | selectattr('type', 'equalto', 'VOCE') | map(attribute='total') | first | default('0') }}",
+        "unique_id": "tim_home_connect_voce_minutes_total",
+        "name": "Voice minutes total"
+      }
+    },
+    "state_topic": "shell-to-mqtt/tim_home_connect/state",
+    "qos": 2
+  }
