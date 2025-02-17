@@ -1,4 +1,4 @@
-# CURL to MQTT Home Assistant Publisher
+# Shell to MQTT Home Assistant Publisher
 
 A Docker container that publishes sensor data to Home Assistant via MQTT. It supports automatic discovery and periodic status updates from an HTTP endpoint.
 
